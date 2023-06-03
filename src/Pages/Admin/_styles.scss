@@ -1,0 +1,179 @@
+@use "@/styles/variables" as variables;
+
+$headerHeight: variables.$headerHeight;
+$maxWidth: variables.$maxWidth;
+$primaryColor: variables.$primaryColor;
+$redError: variables.$redError;
+
+.admin {
+    padding: 20px;
+    min-height: 100dvh;
+
+    h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    &__form {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+
+        input {
+            padding: 10px;
+            margin-right: 10px;
+            width: 200px;
+        }
+
+        button {
+            padding: 5px 20px;
+            background-color: $primaryColor;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 1rem;
+            margin-right: 10px;
+            border: 1px solid #aaa;
+            background-color: #fff;
+            width: 200px;
+
+            &:focus {
+                outline: none;
+                box-shadow: 0 0 4px #aaa;
+            }
+        }
+    }
+
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+
+            &:last-child {
+                text-align: center;
+            }
+        }
+
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        td {
+            span {
+                display: none;
+            }
+
+            select {
+                display: block;
+                width: 100%;
+                padding: 8px;
+            }
+
+            button {
+                margin-right: 8px;
+            }
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-right: 5px;
+            background-color: $redError;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+
+            &.edit__button {
+                background-color: rgb(233, 199, 10);
+            }
+            &.save__button {
+                background-color: rgb(0, 129, 6);
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            display: block;
+
+            tr {
+                display: flex;
+                flex-direction: column;
+                border: 1px solid #ddd;
+                margin-bottom: 12px;
+            }
+
+            th,
+            td {
+                display: flex;
+                flex-basis: 100%;
+                flex-grow: 1;
+                flex-wrap: wrap;
+                padding: 8px;
+                border: none;
+                border-top: 1px solid #ddd;
+
+                &:before {
+                    font-weight: bold;
+                    width: 120px;
+                    margin-right: 8px;
+                }
+            }
+
+            td span {
+                display: inline-block;
+                width: 120px;
+                font-weight: bold;
+            }
+
+            td:last-child {
+                flex-basis: auto;
+                justify-content: center;
+                align-items: center;
+            }
+
+            td select {
+                width: auto;
+            }
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+
+            button {
+                padding: 5px 10px;
+                margin-right: 5px;
+                background-color: $primaryColor;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+
+                &.active {
+                    background-color: $primaryColor;
+                }
+
+                &:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}

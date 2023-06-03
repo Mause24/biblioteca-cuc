@@ -1,0 +1,24 @@
+@use "./styles/fonts" as fonts;
+@import "./styles/config";
+
+.appContainer {
+    font-family: fonts.$openSans;
+}
+
+/* * NOSHOW */
+
+.noShowDesktop {
+    display: none !important;
+}
+.noShowMobile {
+    display: flex !important;
+}
+
+@media screen and (max-width: 850px) {
+    .noShowDesktop {
+        display: flex !important;
+    }
+    .noShowMobile {
+        display: none !important;
+    }
+}

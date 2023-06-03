@@ -1,0 +1,239 @@
+@use "@/styles/variables" as variables;
+
+$headerHeight: variables.$headerHeight;
+$maxWidth: variables.$maxWidth;
+$primaryColor: variables.$primaryColor;
+$redError: variables.$redError;
+
+//BURGER MENU
+.burgerMenu {
+    width: 20px;
+    height: 20px;
+
+    &__container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+
+        .line {
+            width: 100%;
+            height: 20%;
+            border-radius: 2px;
+            pointer-events: none;
+            background-color: $primaryColor;
+            transition: all ease 0.5s;
+        }
+
+        &.open {
+            .line:first-child {
+                transform: rotate(45deg);
+                transform-origin: left bottom;
+            }
+
+            .line:last-child {
+                transform-origin: left top;
+                transform: rotate(-45deg);
+            }
+
+            .line:nth-child(2) {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+header {
+    width: 100%;
+    height: $headerHeight;
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 0 3%;
+    box-shadow: 0 -1px 6px rgba($color: #000000, $alpha: 0.6);
+
+    & > .header__section {
+        display: flex;
+        width: 100%;
+        max-width: $maxWidth;
+        align-items: center;
+        justify-content: space-between;
+
+        & > .section__title {
+            color: $primaryColor;
+            font-size: 1.8rem;
+            line-height: 28px;
+            letter-spacing: 0.01em;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+            @media screen and (max-width: 850px) {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    & > .header__section > .section__nav {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+
+        & > .nav__icon {
+            width: 20px;
+            height: 20px;
+            background: transparent;
+            border: 0;
+
+            & > * {
+                width: 100%;
+                height: 100%;
+                user-select: none;
+            }
+        }
+
+        & > .nav__container {
+            height: 100%;
+
+            & > .container__menu {
+                display: flex;
+                gap: 15px;
+                height: 50%;
+                align-items: center;
+                list-style: none;
+
+                & > .menu__item {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+
+                    & > .item__closeSesion {
+                        border: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: transparent;
+                        color: $redError;
+                        font-weight: bold;
+                    }
+
+                    & > .item__link {
+                        position: relative;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 1rem;
+                        text-decoration: none;
+                        line-height: 24px;
+                        cursor: pointer;
+                        color: $primaryColor;
+                        letter-spacing: 0.01em;
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            width: 46%;
+                            height: 20%;
+                            bottom: -5%;
+                            left: 0;
+                            background-color: $primaryColor;
+                            transform-origin: left;
+                            transition: all ease 0.2s;
+                            transform: scaleX(0);
+                        }
+
+                        &.selected {
+                            font-weight: bold;
+                            &::after {
+                                transform: scaleX(1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.open {
+                transform: translateX(0);
+            }
+        }
+
+        @media screen and (max-width: 850px) {
+            & > .nav__container {
+                position: absolute;
+                left: 0;
+                top: 100%;
+                width: 70%;
+                height: calc(100vh - $headerHeight);
+                display: flex;
+                transition: all ease 0.5s;
+                transform: translateX(-100.5%);
+                justify-content: space-between;
+                flex-direction: column;
+                background-color: $primaryColor;
+
+                & > .container__menu {
+                    flex-direction: column;
+                    gap: 0;
+                }
+
+                & > .container__menu > .menu__item {
+                    height: auto;
+                    width: 100%;
+
+                    & > .item__closeSesion {
+                        width: 100%;
+                        padding: 10px 0;
+                        font-size: 1rem;
+                        text-align: center;
+                    }
+
+                    & > .item__link {
+                        width: 100%;
+                        font-size: 1rem;
+                        padding: 10px 0;
+                        text-align: center;
+                        color: white;
+
+                        &:hover {
+                            font-size: 1rem;
+                            width: 100%;
+                            transition: all ease 0.2s;
+                            padding: 10px 0;
+                            color: white;
+                        }
+
+                        &::after {
+                            content: "";
+                            display: none;
+                        }
+
+                        &.selected {
+                            background-color: white;
+                            font-weight: 400;
+                            font-size: 1.05rem;
+                            color: $primaryColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    & > .header__section > .section__menu {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+
+        @media screen and (max-width: 850px) {
+            flex-direction: column;
+            gap: 0;
+        }
+    }
+}

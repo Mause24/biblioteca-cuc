@@ -1,0 +1,88 @@
+@use "@/styles/variables" as variables;
+
+.login {
+    display: flex;
+    height: 100dvh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #efefef;
+
+    & > .login__container {
+        background-color: white;
+        padding: 70px 25px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 350px;
+        min-width: 250px;
+        gap: 30px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 4px rgba($color: #000000, $alpha: 0.6);
+
+        & > .container__title {
+            font-size: 1.75rem;
+            text-align: center;
+        }
+
+        & > .container__form {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 30px;
+            width: 100%;
+
+            & > .form__input {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                & > .input__text {
+                    font-size: 0.9rem;
+                }
+                & > .input__field {
+                    font-size: 1.25rem;
+                    border-radius: 5px;
+                    padding: 3px 0px 3px 10px;
+                    border: 2px solid #aaaaaa;
+
+                    &:focus-visible {
+                        outline: variables.$primaryColor 1px auto;
+                    }
+
+                    &.error {
+                        outline: variables.$redError 1px auto;
+                    }
+                }
+                & > .input__error {
+                    border-radius: 5px;
+                    padding: 0px 0 0px 10px;
+
+                    & > .error__text {
+                        font-size: 0.85rem;
+                        font-weight: bold;
+                        color: variables.$redError;
+                    }
+                }
+            }
+
+            & > .form__button {
+                font-size: 1.25rem;
+                border-radius: 5px;
+                border: 0;
+                width: 100%;
+                padding: 7px 20px;
+                background-color: variables.$primaryColor;
+                color: white;
+            }
+        }
+
+        @media screen and (width <= 720px) {
+            padding: 40px 10px;
+            width: 90%;
+        }
+    }
+}

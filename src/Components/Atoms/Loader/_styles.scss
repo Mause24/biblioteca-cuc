@@ -1,0 +1,27 @@
+.loader {
+    stroke-dasharray: 60px;
+    stroke-linecap: round;
+    stroke-width: 2px;
+    fill: none;
+    animation: loading 3.2s linear infinite;
+    transform-origin: center;
+}
+@keyframes loading {
+    0% {
+        stroke-dashoffset: 0px;
+        transform: rotateZ(0deg);
+    }
+    25% {
+        stroke-dashoffset: -60px;
+    }
+    50% {
+        stroke-dashoffset: -120px;
+    }
+    75% {
+        stroke-dashoffset: -180px;
+    }
+    100% {
+        stroke-dashoffset: -240px;
+        transform: rotateZ(360deg);
+    }
+}
